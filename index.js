@@ -15,7 +15,7 @@ app.use(
       const allowedOrigins = [
         process.env.FRONTEND_URL || "http://localhost:5173",
         "http://localhost:5173",
-        "https://employee-ms-swart.vercel.app",
+        "https://employee-ms-sall.vercel.app",
       ];
 
       if (origin && origin.startsWith("http://localhost:")) {
