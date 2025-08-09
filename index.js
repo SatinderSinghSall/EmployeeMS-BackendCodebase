@@ -11,10 +11,24 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      process.env.FRONTEND_URL || "http://localhost:5173",
-      "http://localhost:5173",
-    ],
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        process.env.FRONTEND_URL || "http://localhost:5173",
+        "http://localhost:5173",
+        "https://your-frontend-deployed-domain.com", // replace with your actual deployed frontend
+      ];
+
+      // Allow all localhost ports for dev
+      if (origin && origin.startsWith("http://localhost:")) {
+        return callback(null, true);
+      }
+
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );
