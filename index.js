@@ -15,10 +15,9 @@ app.use(
       const allowedOrigins = [
         process.env.FRONTEND_URL || "http://localhost:5173",
         "http://localhost:5173",
-        "https://your-frontend-deployed-domain.com", // replace with your actual deployed frontend
+        "https://employee-ms-swart.vercel.app",
       ];
 
-      // Allow all localhost ports for dev
       if (origin && origin.startsWith("http://localhost:")) {
         return callback(null, true);
       }
